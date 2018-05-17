@@ -1,0 +1,2 @@
+# teratail125858
+EDITコントロールとDrawTextで文字の開始位置を同じにしたい。
