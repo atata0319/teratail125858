@@ -150,10 +150,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					if (ChooseFont(&cf))
 					{
 						HWND hwndEdit = GetDlgItem(hWnd, IDC_EDITBOX1);
+						HFONT fontOld = font;
 						font = CreateFontIndirect(&lf);
-						HFONT fontOld = reinterpret_cast<HFONT>(SendMessage(hwndEdit, WM_SETFONT, reinterpret_cast<WPARAM>(font), FALSE));
+						SendMessage(hwndEdit, WM_SETFONT, reinterpret_cast<WPARAM>(font), TRUE);
 						DeleteObject(fontOld);
-						InvalidateRect(hWnd, NULL, TRUE);
+						InvalidateRect(hWnd, NULL, TRUE); // コントロールが表示されていない場合、これで再描画する。
 					}
 				}
 				break;
